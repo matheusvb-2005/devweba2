@@ -1,0 +1,26 @@
+# Fontes do build dos PDFs (HTMLs e dependencias) - nao vao para o repo
+_pdf-source/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Ferramentas locais
+.claude/
+
+# Banco de dados local
+data/*.db
+
+# Variaveis de ambiente
+.env
+.env.local
