@@ -1,0 +1,30 @@
+<%- include('../partials/header', { title: title }) %>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="brand">Organiza<span>Uno</span></div>
+    <p class="subtitle">Entre para organizar suas tarefas</p>
+
+    <% if (error) { %>
+      <div class="alert alert-error"><%= error %></div>
+    <% } %>
+    <% if (msg) { %>
+      <div class="alert alert-ok"><%= msg %></div>
+    <% } %>
+
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+
+    <p class="auth-foot">Nao tem conta? <a href="/register">Criar conta</a></p>
+  </div>
+</div>
+</body>
+</html>

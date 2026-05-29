@@ -1,0 +1,19 @@
+{
+  "name": "organizauno",
+  "version": "1.0.0",
+  "description": "OrganizaUno - gestor de tarefas com Node.js, Express, EJS e SQLite",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "author": "Matheus Bichara",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "better-sqlite3": "^11.3.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "express-session": "^1.18.0"
+  }
+}

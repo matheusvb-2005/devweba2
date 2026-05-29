@@ -1,0 +1,72 @@
+<%- include('../partials/header', { title: title }) %>
+<%- include('../partials/navbar', { active: 'tasks' }) %>
+
+<%
+  const isEdit = !!task;
+  const actionUrl = isEdit ? `/tasks/${task.id}` : '/tasks';
+  const v = task || {};
+%>
+
+<div class="container">
+  <h2><%= isEdit ? 'Editar Tarefa' : 'Nova Tarefa' %></h2>
+
+  <% if (error) { %>
+    <div class="alert alert-error"><%= error %></div>
+  <% } %>
+
+  <div class="card-box">
+    <form action="<%= actionUrl %>" method="POST">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label for="title">Titulo *</label>
+          <input type="text" id="title" name="title" value="<%= v.title || '' %>" required autofocus>
+        </div>
+
+        <div class="form-group full">
+          <label for="description">Descricao</label>
+          <textarea id="description" name="description"><%= v.description || '' %></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="priority">Prioridade</label>
+          <select id="priority" name="priority">
+            <% priorities.forEach(function(p) { %>
+              <option value="<%= p %>" <%= (v.priority || 'media') === p ? 'selected' : '' %>><%= priorityLabels[p] %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <% statuses.forEach(function(s) { %>
+              <option value="<%= s %>" <%= (v.status || 'pendente') === s ? 'selected' : '' %>><%= statusLabels[s] %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="category_id">Categoria</label>
+          <select id="category_id" name="category_id">
+            <option value="">Sem categoria</option>
+            <% categories.forEach(function(c) { %>
+              <option value="<%= c.id %>" <%= String(v.category_id) === String(c.id) ? 'selected' : '' %>><%= c.name %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="due_date">Data de vencimento</label>
+          <input type="date" id="due_date" name="due_date" value="<%= v.due_date ? String(v.due_date).slice(0,10) : '' %>">
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <button type="submit" class="btn">Salvar Tarefa</button>
+        <a href="/tasks" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

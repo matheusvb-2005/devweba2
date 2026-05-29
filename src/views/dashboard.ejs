@@ -1,0 +1,70 @@
+<%- include('partials/header', { title: title }) %>
+<%- include('partials/navbar', { active: 'dashboard' }) %>
+
+<%
+  function fmtDate(iso) {
+    if (!iso) return '-';
+    const p = String(iso).slice(0, 10).split('-');
+    return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : iso;
+  }
+%>
+
+<div class="container">
+  <h2>Painel de Controle</h2>
+
+  <div class="cards">
+    <div class="card pendente">
+      <div class="card-num"><%= counts.pendente %></div>
+      <div class="card-label">Tarefas Pendentes</div>
+    </div>
+    <div class="card andamento">
+      <div class="card-num"><%= counts['em-andamento'] %></div>
+      <div class="card-label">Em Andamento</div>
+    </div>
+    <div class="card concluida">
+      <div class="card-num"><%= counts.concluida %></div>
+      <div class="card-label">Concluidas</div>
+    </div>
+  </div>
+
+  <div class="section-title">Tarefas Urgentes (proximos 3 dias)</div>
+  <% if (upcoming.length === 0) { %>
+    <table>
+      <tbody><tr><td class="empty">Nenhuma tarefa urgente. Tudo em dia!</td></tr></tbody>
+    </table>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Categoria</th>
+          <th>Prioridade</th>
+          <th>Vencimento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% upcoming.forEach(function(t) { %>
+          <tr>
+            <td><a href="/tasks/<%= t.id %>/edit"><%= t.title %></a></td>
+            <td>
+              <% if (t.category_name) { %>
+                <span class="color-dot" style="background: <%= t.category_color %>"></span><%= t.category_name %>
+              <% } else { %>
+                <span class="empty" style="padding:0;">sem categoria</span>
+              <% } %>
+            </td>
+            <td><span class="badge <%= t.priority %>"><%= priorityLabels[t.priority] %></span></td>
+            <td><%= fmtDate(t.due_date) %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <p style="margin-top:20px;">
+    <a href="/tasks/new" class="btn">+ Nova tarefa</a>
+    <a href="/tasks" class="btn btn-secondary">Ver todas as tarefas</a>
+  </p>
+</div>
+</body>
+</html>

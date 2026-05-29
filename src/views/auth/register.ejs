@@ -1,0 +1,35 @@
+<%- include('../partials/header', { title: title }) %>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="brand">Organiza<span>Uno</span></div>
+    <p class="subtitle">Crie sua conta gratuita</p>
+
+    <% if (error) { %>
+      <div class="alert alert-error"><%= error %></div>
+    <% } %>
+
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm">Confirmar senha</label>
+        <input type="password" id="confirm" name="confirm" required>
+      </div>
+      <button type="submit" class="btn btn-success">Cadastrar</button>
+    </form>
+
+    <p class="auth-foot">Ja tem conta? <a href="/login">Fazer login</a></p>
+  </div>
+</div>
+</body>
+</html>

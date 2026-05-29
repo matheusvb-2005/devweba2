@@ -15,7 +15,7 @@ Thumbs.db
 .idea/
 *.swp
 
-# Ferramentas locais
+# Ferramentas locais (IA usada)
 .claude/
 
 # Banco de dados local

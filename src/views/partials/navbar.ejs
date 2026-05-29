@@ -1,0 +1,16 @@
+<nav>
+  <a href="/dashboard" class="nav-logo">Organiza<span>Uno</span></a>
+  <div class="nav-links">
+    <a href="/dashboard" class="<%= active === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+    <a href="/tasks" class="<%= active === 'tasks' ? 'active' : '' %>">Tarefas</a>
+    <a href="/categories" class="<%= active === 'categories' ? 'active' : '' %>">Categorias</a>
+  </div>
+  <div class="nav-right">
+    <% if (currentUser) { %>
+      <span>Ola, <%= currentUser.name %></span>
+    <% } %>
+    <form action="/logout" method="POST" style="margin:0;">
+      <button type="submit" class="btn-sair">Sair</button>
+    </form>
+  </div>
+</nav>
